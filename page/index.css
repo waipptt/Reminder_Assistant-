@@ -6,6 +6,12 @@
     padding-inline-start:0;
 }
 
+body{
+    overflow:scroll;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
 #container::-webkit-scrollbar {
     display: none;
 }
