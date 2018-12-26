@@ -1,0 +1,265 @@
+#container{
+    width:100%;
+    height: 800px;
+    overflow-x:hidden;
+    overflow-y: auto;
+    padding-inline-start:0;
+}
+
+#container::-webkit-scrollbar {
+    display: none;
+}
+
+#background{
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    text-align: center;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#background #showSth{
+    margin-top: 10%;
+    display: inline-block;
+}
+
+/*初始页面样式*/
+.con-template{
+    position: relative;
+    border:1px solid #E8E8E8;
+    margin: 10px;
+    height: 60px;
+    list-style:none;
+}
+.con-template-left{
+    float: left;
+}
+
+.con-nick{
+    font-size: 16px;
+    line-height: 20px;
+    color: #000;
+    margin:10px 10px 5px 10px;
+}
+
+.con-state-ison,.con-state-isoff,.con-state-isNotOrder{
+    border-radius: 11px;
+    font-size: 14px;
+    color: #FFFFFF;
+    padding: 0 9px;
+    margin: 5px 10px 10px 10px;
+}
+
+.con-state-ison{
+    background: #52C41A;
+}
+
+.con-state-isoff{
+    background: #FF0000;
+}
+
+.con-state-isNotOrder{
+    background: #FF0000;
+}
+
+.con-template-right{
+    float: right;
+    margin-right: 15px;
+}
+
+.con-event{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.inline-block{
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.template-btn{
+    cursor: pointer;
+}
+
+.template-btn span{
+    display: block;
+}
+
+.icon-cancel{
+    color:red;
+    font-size: 22px;
+}
+
+.icon-control100,.icon-qiehuan,.icon-mianfei,.icon-guanji{
+    color:#0090FA;
+    font-size: 22px;
+}
+
+#button-text{
+    font-size: 14px;
+    color: #000000;
+}
+
+/*未登录或未下载千牛*/
+.template-blank{
+    text-align: center;
+}
+
+#text{
+    margin-top: 176px;
+}
+
+#button-blank{
+    margin-top: 84px;
+    padding: 14px 56px;
+    border: none;
+    background: #0090FA;
+    border-radius: 34px;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+#text span{
+    font-size: 14px;
+    color: #000000;
+}
+
+/*刷新页面*/
+.template-loading{
+    text-align: center;
+    z-index: 150;
+}
+
+#loaderImage,#loaderImage1{
+    display: inline-block;
+    margin-top: 180px;
+    margin-bottom: 47px;
+}
+
+/*点击重新加载数据*/
+.textToWhite{
+    color: white;
+}
+
+/*confirm dialog*/
+.template-confirm{
+    text-align: center;
+    z-index: 150;
+    width:338px;
+    height: 189px;
+    margin:230px auto;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    border-radius: 5px;
+}
+
+.dialog-header{
+    border-bottom: 1px solid #CCCCCC;
+    height: 34.5px;
+}
+
+.dialog-nick{
+    float: left;
+    font-size: 14px;
+    margin:10px 15px;
+}
+
+.icon-guanbi{
+    float: right;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.dialog-body{
+    font-size: 12px;
+    color: #000000;
+    margin:50px auto;
+}
+
+.dialog-button{
+    font-size: 10px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    background: #0090FA;
+    border:none;
+    float: right;
+    margin-right: 15px;
+    width: 60px;
+    height: 22px;
+}
+
+.template-showQRCode{
+    height: 400px;
+    width: 400px;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    box-shadow: 1px 1px 2px 0 #9B9B9B;
+    font-size: 14px;
+}
+
+.QR-header{
+    height: 60px;
+}
+
+.QR-nick{
+    float: left;
+    margin:20px;
+
+}
+
+.QR-icon{
+    float: right;
+    margin: 20px;
+}
+
+.QR-text{
+    margin-top:4px;
+}
+
+.QR-Code{
+    height: 94px;
+    width: 94px;
+    margin-top: 35px;
+}
+
+.QR-saoma{
+    height: 34px;
+    margin-top:42px;
+}
+
+.icon-saoma{
+    font-size: 34px;
+    margin-right: 33px;
+}
+
+.QR-saoma-text{
+    height: 34px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.QR-btn{
+    margin-top:28px;
+    background: #3089DD;
+    border-radius: 14px;
+    color: #FFFFFF;
+    padding: 4px 34px;
+    border:none;
+    cursor: pointer;
+}
+
+.template-grantSuccess{
+    margin-top: 73px;
+}
+
+.grantSuccess-text{
+    margin-top:20px;
+}
+
+
