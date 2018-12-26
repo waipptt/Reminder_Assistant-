@@ -10,25 +10,10 @@ document.onmousedown = function(e){
         return false;
     }
 }
-
-
-document.oncontextmenu = function(e){
-    return false;
-}
-
-document.onselectstart = function(){
-    return false;
-}
-
+document.oncontextmenu = function(e){ return false;}
+document.onselectstart = function(){ return false;}
 $(function(){
-
-    let usersss=[
-        {'nick':'炫轩1236',state:'running'},
-        {'nick':'yang会清:1111',state: 'occupied'},
-        {'nick':'朝阳',state:'normal'},
-        {'nick':'赵东浩的测试店铺',state:'not'},
-    ]
-
+    let usersss=[]
     let map={
         '1':{
             buttonClassName:'iconfont icon-cancel',
@@ -36,6 +21,7 @@ $(function(){
             stateText:'自动催付已开启',
             templateClass:'con-state-ison',
             func:function(){//添加callback
+                AY_SetUserState(choosedUser,false);
             }
         },
         '2':{
@@ -44,6 +30,7 @@ $(function(){
             stateText:'自动催付已开启',
             templateClass:'con-state-ison',
             func:function(){//添加callback
+                AY_openMessageSetting(choosedUser);
             }
         },
         '3':{
@@ -52,6 +39,7 @@ $(function(){
             stateText:'自动催付已关闭',
             templateClass:'con-state-isoff',
             func:function(){//添加callback
+                AY_SetUserState(choosedUser,true);
             }
         },
         '4':{
@@ -60,6 +48,7 @@ $(function(){
             stateText:'自动催付已关闭',
             templateClass:'con-state-isoff',
             func:function(){//添加callback
+                AY_SetUserState(choosedUser,true);
             }
         },
         '5':{
@@ -84,20 +73,22 @@ $(function(){
     closeMask();
 
     // //页面加载时，先判断当前是否有千牛用户已经登陆
-    // let isQNRunning=AY_IsQNRunning()
-    // if(isQNRunning){
-    //     templateLoading(); //有用户登陆，显示加载蒙层
-    // }else{
-    //     hasNotLogin();//没有用户登录，打开登陆连接页面
-    // }
+    let isQNRunning=AY_IsQNRunning()
+    if(isQNRunning){
+        templateLoading(); //有用户登陆，显示加载蒙层
+    }else{
+        hasNotLogin();//没有用户登录，打开登陆连接页面
+    }
 
     //当前PC未登录千牛
     function hasNotLogin(){
+        hideTemplateLoading();
         templateBlank('您还没有登录千牛','请在登陆后使用旺旺自动催付','立即登录',AY_StartUpQN,'hasNotLogin')
     }
 
     //当前PC未下载千牛
     function hasNotInstallQNUI(){
+        hideTemplateLoading();
         templateBlank('检测到当前电脑未安装千牛','请在下载安装后使用旺旺自动催付','立即下载',AY_OpenURL,'hasNotInstallQNUI')
     }
 
@@ -227,6 +218,7 @@ $(function(){
         button.addClass('inline-block');
         button.click(function(){
             choosedUser=users.nick;
+            state.func();
         });
         template.find('#state').html(state.stateText);
         template.find('#state').addClass(state.templateClass);
@@ -342,9 +334,11 @@ $(function(){
     }
 
     window.getUserInfo=getUserInfo;
-    window.refreshUserList=templateLoading;
+    window.templateLoading=templateLoading;
     window.clearUserList=clearUserList;
-
-    //hasAnotherAccountLogin('nick','nihao')
+    window.removeUser = removeUser;
+    window.showOpacityFunc = showOpacityFunc;
+    window.clearOpacityFunc = clearOpacityFunc;
+    aaa()
     //showQRCode()
 });

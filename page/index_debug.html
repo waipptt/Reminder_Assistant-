@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="YA_QN.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/loading.js"></script>
+	<script src="layer/layer.js"></script>
+
+	<!--<script src="js/insert.js"></script>-->
+	<link href="layer/theme/default/layer.css" rel="stylesheet" type="text/css">
+	<link href="./icon/iconfont.css" rel="stylesheet" type="text/css">
+	<link href="index.css" rel="stylesheet" type="text/css"/>
+	<title>Title</title>
+</head>
+<body>
+	<div id="background">
+		<div id="showSth">
+
+		</div>
+	</div>
+	<div id="initLoading">
+
+	</div>
+	<ul id="container">
+
+	</ul>
+
+	<script type="text/template" id="template">
+		<li class="con-template">
+			<div class="con-template-left">
+				<div id='nick' class="con-nick"></div>
+				<div id="state"></div>
+			</div>
+			<div class="con-template-right">
+				<div id="button" class="con-event"></div>
+			</div>
+		</li>
+	</script>
+	<script type="text/template" id="template-btn">
+		<div class="template-btn">
+			<span><i></i></span>
+			<span id="button-text"></span>
+		</div>
+	</script>
+
+	<script type="text/template" id="template-blank">
+		<div class="template-blank">
+			<div id="text">
+				<span id="text-up"></span><br/><br/>
+				<span id="text-down"></span>
+			</div>
+			<button id="button-blank"></button>
+		</div>
+	</script>
+
+	<script type="text/template" id="template-loading">
+		<div class="template-loading">
+			<div id="loaderImage"></div>
+			<div id="loadingText">
+				<span>正在检测当前电脑上登录的千牛账号</span><br/><br/>
+				<span>请稍后...</span>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/template" id="template-showQRCode">
+		<div class="template-showQRCode">
+			<div class="QR-header">
+				<span class="QR-nick">nihao</span>
+				<i class="QR-icon iconfont icon-guanbi"></i>
+			</div>
+			<div class="QR-body">
+				<div class="QR-text">爱用交易授权失效，使用主账号打开手机千牛扫码授权</div>
+				<img class="QR-Code" />
+				<div class="QR-saoma">
+					<i class="iconfont icon-saoma"></i>
+					<span class="QR-saoma-text">
+						打开<span style="color:#0090FA">手机千牛</span>扫一扫登录
+					</span>
+				</div>
+				<input type="button" value="联系主账号" class="QR-btn" />
+			</div>
+
+		</div>
+	</script>
+
+	<script type="text/template" id="template-grantSuccess">
+		<div class="template-grantSuccess">
+			<img src="./images/grantSuccess.png">
+			<div class="grantSuccess-text">授权成功！</div>
+		</div>
+	</script>
+
+</body>
+</html>
