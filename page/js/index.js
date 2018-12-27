@@ -108,11 +108,7 @@ $(function(){
 
     //获取目前PC已经登录的用户，存储进入userInfo数组，并显示在页面上
     function getUserInfo(newUser){
-        if(userInfo.length==0){
-            showTemplateLoading();
-        }else{
-            hideTemplateLoading();
-        }
+        clearTemplateBlank();
         let index=-1;
         $.each(userInfo,function(i,user){
             if(newUser.nick==user.nick){
@@ -136,6 +132,11 @@ $(function(){
             obj['nick']=newUser.nick;
             userInfo.push(obj);
             getUsersState(newUser); 
+        }
+        if(userInfo.length==0){
+            showTemplateLoading();
+        }else{
+            hideTemplateLoading();
         }
     }
 
@@ -245,8 +246,13 @@ $(function(){
 
             }
         })
-        $('#container').append(template);
+        $('#templateBlank').append(template);
     }
+
+    function clearTemplateBlank(){
+        $('#templateBlank').children().remove();
+    }
+
 
     //有其他子账号已开启自动催付
     function hasAnotherAccountLogin(usernic,content){
@@ -331,6 +337,11 @@ $(function(){
         if(index!=-1){
             userInfo.splice(index,1);
         }
+        if(userInfo.length==0){
+            showTemplateLoading();
+        }else{
+            hideTemplateLoading();
+        }
     }
 
     window.getUserInfo=getUserInfo;
@@ -339,6 +350,6 @@ $(function(){
     window.removeUser = removeUser;
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
-    aaa()
+    //aaa()
     //showQRCode()
 });
