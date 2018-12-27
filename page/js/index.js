@@ -121,8 +121,8 @@ $(function(){
                 hasAnotherAccountLogin();
                 return
             }
-            if(newUser.warn=='账号授权问题'){
-                grantFailed()
+            if (newUser.state == 'expoauth') {
+                grantFailed(newUser.nick)
                 return
             }
             clearUserList();
@@ -271,14 +271,18 @@ $(function(){
     }
 
     //爱用交易授权失败
-    function grantFailed(){
-        layer.confirm('爱用交易授权已失效，需要主账号重新授权', {title:choosedUser,shade:0.3}, function(index){
+    function grantFailed(expUserNick) {
+        layer.confirm('爱用交易授权已失效，需要主账号重新授权', { title: choosedUser, shade: 0.3 }, function(index) {
             //do something
-            choosedUser='yang会清:1111'
-            if(choosedUser.indexOf(':')==-1){
-                let url='https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
-                AY_openURLinQN(choosedUser,url)
-            }else{
+            //choosedUser = 'yang会清:1111'
+            var curUser = choosedUser;
+            if (expUserNick != undefined && expUserNick != null) 
+            { curUser = expUserNick;}
+
+            if (curUser.indexOf(':') == -1) {
+                let url = 'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
+                AY_openURLinQN(curUser, url)
+            } else {
                 showQRCode();
             }
             layer.close(index);
@@ -350,6 +354,6 @@ $(function(){
     window.removeUser = removeUser;
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
-    //aaa()
+    window.hasAnotherAccountLogin = hasAnotherAccountLogin;
     //showQRCode()
 });
