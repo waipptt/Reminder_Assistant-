@@ -100,7 +100,7 @@ body{
     font-size: 22px;
 }
 
-.icon-control100,.icon-qiehuan,.icon-mianfei,.icon-guanji{
+.icon-control100,.icon-qriehuan,.icon-mianfei,.icon-guanji{
     color:#0090FA;
     font-size: 22px;
 }
@@ -236,7 +236,7 @@ body{
 
 .QR-saoma{
     height: 34px;
-    margin-top:42px;
+    margin-top:15px;
 }
 
 .icon-saoma{
@@ -251,7 +251,7 @@ body{
 }
 
 .QR-btn{
-    margin-top:28px;
+    margin-top:20px;
     background: #3089DD;
     border-radius: 14px;
     color: #FFFFFF;
