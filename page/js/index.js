@@ -73,12 +73,12 @@ $(function(){
     closeMask();
 
     // //页面加载时，先判断当前是否有千牛用户已经登陆
-    let isQNRunning=AY_IsQNRunning()
-    if(isQNRunning){
-        templateLoading(); //有用户登陆，显示加载蒙层
-    }else{
-        hasNotLogin();//没有用户登录，打开登陆连接页面
-    }
+    // let isQNRunning=AY_IsQNRunning()
+    // if(isQNRunning){
+    //     templateLoading(); //有用户登陆，显示加载蒙层
+    // }else{
+    //     hasNotLogin();//没有用户登录，打开登陆连接页面
+    // }
 
     //当前PC未登录千牛
     function hasNotLogin(){
@@ -350,6 +350,7 @@ $(function(){
     window.removeUser = removeUser;
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
+    showQRCode()
     //aaa()
     //showQRCode()
 });
