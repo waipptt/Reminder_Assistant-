@@ -301,7 +301,7 @@ $(function(){
     //千牛账号授权失败，子账号展示二维码扫码页面
     function showQRCode(){
         let QRCode=$($('#template-showQRCode').html())
-        QRCode.find('.QR-Code').attr('src','images/qrcode.jpg')
+        QRCode.find('.QR-Code').attr('src','images/qrcode.png')
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
             closeMask();
