@@ -73,12 +73,12 @@ $(function(){
     closeMask();
 
     // //页面加载时，先判断当前是否有千牛用户已经登陆
-    let isQNRunning=AY_IsQNRunning()
-    if(isQNRunning){
-        templateLoading(); //有用户登陆，显示加载蒙层
-    }else{
-        hasNotLogin();//没有用户登录，打开登陆连接页面
-    }
+    // let isQNRunning=AY_IsQNRunning()
+    // if(isQNRunning){
+    //     templateLoading(); //有用户登陆，显示加载蒙层
+    // }else{
+    //     hasNotLogin();//没有用户登录，打开登陆连接页面
+    // }
 
     //当前PC未登录千牛
     function hasNotLogin(){
@@ -283,7 +283,7 @@ $(function(){
                 let url = 'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
                 AY_openURLinQN(curUser, url)
             } else {
-                showQRCode();
+                showQRCode(expUserNick);
             }
             layer.close(index);
         },function(index){
@@ -299,8 +299,9 @@ $(function(){
     }
 
     //千牛账号授权失败，子账号展示二维码扫码页面
-    function showQRCode(){
+    function showQRCode(expUserNick){
         let QRCode=$($('#template-showQRCode').html())
+        QRCode.find('.QR-nick').text(expUserNick)
         QRCode.find('.QR-Code').attr('src','images/qrcode.png')
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
@@ -314,6 +315,11 @@ $(function(){
         $('#showSth').append(QRCode);
         openMask();
         $('#background').attr('background','white');
+    }
+
+    function closeShowSth(){
+        $('#background').children().remove();
+        $('#background').css('display','none')
     }
 
     //扫描二维码授权成功页面
@@ -355,5 +361,4 @@ $(function(){
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
-    //showQRCode()
 });
