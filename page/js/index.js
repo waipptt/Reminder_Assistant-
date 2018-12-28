@@ -61,7 +61,7 @@ $(function(){
                     let url='https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
                     AY_openURLinQN(choosedUser,url)
                 }else{
-                    openWW('亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+                    openWW(choosedUser,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
                         'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
                         '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
                 }
@@ -73,12 +73,12 @@ $(function(){
     closeMask();
 
     // //页面加载时，先判断当前是否有千牛用户已经登陆
-    // let isQNRunning=AY_IsQNRunning()
-    // if(isQNRunning){
-    //     templateLoading(); //有用户登陆，显示加载蒙层
-    // }else{
-    //     hasNotLogin();//没有用户登录，打开登陆连接页面
-    // }
+     let isQNRunning=AY_IsQNRunning()
+     if(isQNRunning){
+         templateLoading(); //有用户登陆，显示加载蒙层
+     }else{
+         hasNotLogin();//没有用户登录，打开登陆连接页面
+     }
 
     //当前PC未登录千牛
     function hasNotLogin(){
@@ -293,9 +293,9 @@ $(function(){
     }
 
     //子账号打开旺旺聊天窗口与主账号联系
-    function openWW(content){
-        userArr=choosedUser.split(':');
-        AY_wangwangMessage(choosedUser,userArr[0],content)
+    function openWW(usernick,content){
+        userArr=usernick.split(':');
+        AY_wangwangMessage(usernick,userArr[0],content)
     }
 
     //千牛账号授权失败，子账号展示二维码扫码页面
@@ -308,7 +308,7 @@ $(function(){
             closeMask();
         })
         QRCode.find('.QR-btn').click(function(){
-           openWW('亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+           openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
                'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
                '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
         })
