@@ -218,8 +218,10 @@ $(function(){
         button.find('#button-text').html(state.buttonText);
         button.addClass('inline-block');
         button.click(function(){
-            choosedUser=users.nick;
-            state.func();
+            setTimeout(()=>{
+                choosedUser=users.nick;
+                state.func();
+            },500)
         });
         template.find('#state').html(state.stateText);
         template.find('#state').addClass(state.templateClass);
