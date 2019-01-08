@@ -218,8 +218,10 @@ $(function(){
         button.find('#button-text').html(state.buttonText);
         button.addClass('inline-block');
         button.click(function(){
-            choosedUser=users.nick;
-            state.func();
+            setTimeout(()=>{
+                choosedUser=users.nick;
+                state.func();
+            },500)
         });
         template.find('#state').html(state.stateText);
         template.find('#state').addClass(state.templateClass);
@@ -302,15 +304,26 @@ $(function(){
     function showQRCode(expUserNick){
         let QRCode=$($('#template-showQRCode').html())
         QRCode.find('.QR-nick').text(expUserNick)
-        QRCode.find('.QR-Code').attr('src','images/qrcode.png')
+        let grantResult=false;
+        let grantTime=setInterval(() => {
+            grantResult=true;
+        }, 5000);
+        if(grantResult==1){
+            QRCode.find('.QR-body').children().remove();
+            QRCode.append('<img src="images/grantSuccess.png" class="grantSuccess-img">')
+            QRCode.append('<div class="grantSuccess-text">授权成功！</div>')
+        }else{
+            QRCode.find('.QR-Code').attr('src','images/qrcode.png')
+            QRCode.find('.QR-btn').click(function(){
+            openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+                'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
+                '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+            })
+        }
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
+            clearInterval(grantTime);
             closeMask();
-        })
-        QRCode.find('.QR-btn').click(function(){
-           openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-               'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
-               '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
         })
         $('#showSth').append(QRCode);
         openMask();
@@ -361,4 +374,5 @@ $(function(){
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
+    showQRCode();
 });
