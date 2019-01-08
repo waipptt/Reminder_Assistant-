@@ -117,6 +117,8 @@ $(function(){
             }
         })
         if(index!=-1){
+            clearUserList();
+            changeState();
             if(newUser.warn=='其他账号切换'){
                 hasAnotherAccountLogin();
                 return
@@ -125,11 +127,10 @@ $(function(){
                 grantFailed(newUser.nick)
                 return
             }
-            clearUserList();
-            changeState();
         }else{
             let obj={};
             obj['nick']=newUser.nick;
+            obj['state']=newUser.state;
             userInfo.push(obj);
             getUsersState(newUser); 
         }
@@ -374,5 +375,4 @@ $(function(){
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
-    showQRCode();
 });
