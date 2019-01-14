@@ -309,7 +309,7 @@ $(function(){
         let grantTime=setInterval(() => {
             $.ajax({
                 type:'GET',
-                url:'http://101.37.224.212:1999/message/getAuthInfo',
+                url:'http://10.27.226.93:1999/message/getReminderSet',
                 data:{
                     nick:expUserNick
                 },
