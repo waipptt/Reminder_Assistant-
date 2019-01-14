@@ -368,6 +368,15 @@ $(function(){
         }
     }
 
+    //将所有running状态下的用户转变成normal状态
+    function turnRunTONormal(){
+        $.each(userInfo,function(user){
+            if(user.state=='running'){
+                user.state='normal'
+            }
+        })
+    }
+
     window.getUserInfo=getUserInfo;
     window.templateLoading=templateLoading;
     window.clearUserList=clearUserList;
