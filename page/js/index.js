@@ -305,22 +305,33 @@ $(function(){
     function showQRCode(expUserNick){
         let QRCode=$($('#template-showQRCode').html())
         QRCode.find('.QR-nick').text(expUserNick)
-        let grantResult=false;
+        grantResult=false;
         let grantTime=setInterval(() => {
-            grantResult=true;
-        }, 5000);
-        if(grantResult==1){
-            QRCode.find('.QR-body').children().remove();
-            QRCode.append('<img src="images/grantSuccess.png" class="grantSuccess-img">')
-            QRCode.append('<div class="grantSuccess-text">授权成功！</div>')
-        }else{
-            QRCode.find('.QR-Code').attr('src','images/qrcode.png')
-            QRCode.find('.QR-btn').click(function(){
-            openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-                'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
-                '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+            $.ajax({
+                type:'GET',
+                url:'http://101.37.224.212:1999/message/getAuthInfo',
+                data:{
+                    nick:expUserNick
+                },
+                dataType:'json',
+                success:function(res){
+                    if(res){
+                        clearInterval(grantTime);
+                        clearOpacityFunc();
+                        grantSuccess(expUserNick);
+                    }
+                },
+                error:function(err){
+                    console.log('错误是',err)
+                }
             })
-        }
+        }, 500);
+        QRCode.find('.QR-Code').attr('src','images/qrcode.png')
+        QRCode.find('.QR-btn').click(function(){
+        openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+            'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
+            '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+        })
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
             clearInterval(grantTime);
@@ -337,8 +348,9 @@ $(function(){
     }
 
     //扫描二维码授权成功页面
-    function grantSuccess(){
+    function grantSuccess(expUserNick){
         let QRCode=$($('#template-showQRCode').html())
+        QRCode.find('.QR-nick').text(expUserNick)
         let grantSuccessTem=$($('#template-grantSuccess').html())
         QRCode.find('.QR-body').children().remove();
         QRCode.find('.icon-guanbi').click(function(){
@@ -346,7 +358,9 @@ $(function(){
             closeMask();
         })
         QRCode.find('.QR-body').append(grantSuccessTem);
-        $('#container').append(QRCode);
+        $('#showSth').append(QRCode);
+        openMask();
+        $('#background').attr('background','white');
     }
 
     //删除用户
@@ -377,6 +391,10 @@ $(function(){
         })
     }
 
+    function setGrant(nick){
+        
+    }
+
     window.getUserInfo=getUserInfo;
     window.templateLoading=templateLoading;
     window.clearUserList=clearUserList;
@@ -384,4 +402,6 @@ $(function(){
     window.showOpacityFunc = showOpacityFunc;
     window.clearOpacityFunc = clearOpacityFunc;
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
+    window.showQRCode=showQRCode;
+    window.setGrant=setGrant;
 });
