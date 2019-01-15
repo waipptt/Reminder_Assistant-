@@ -195,6 +195,7 @@ $(function(){
     }
 
     function clearTemplateLoading(){
+        stopAnimation();
         $('#initLoading').children().remove();
     }
 
