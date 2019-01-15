@@ -194,9 +194,14 @@ $(function(){
         $('#initLoading').append(template);
     }
 
-    function clearTemplateLoading(){
-        stopAnimation();
-        $('#initLoading').children().remove();
+    //显示浮层
+    function showTemplateLoading(){
+        $('#initLoading').show();
+    }
+
+    //隐藏浮层
+    function hideTemplateLoading(){
+        $('#initLoading').hide();
     }
 
     //清除用户
@@ -254,17 +259,17 @@ $(function(){
     //有其他子账号已开启自动催付
     function hasAnotherAccountLogin(usernic,content){
         layer.open({
-            title:usernic
+            title: usernic
             ,content: content
             ,shade:0.3
-            ,btn: ['我知道了']
-            ,yes: function(index, layero){
+            ,btn:['我知道了']
+            ,yes:function(index,layero){
                 closeMask();
                 clearUserList();
                 changeState();
                 layer.close(index);
             }
-        });
+          }); 
     }
 
     //爱用交易授权失败
@@ -402,5 +407,6 @@ $(function(){
     window.hasNotLogin=hasNotLogin;
     window.hasNotInstallQNUI=hasNotInstallQNUI;
     window.showTemplateLoading=showTemplateLoading;
-    window.hideTemplateLoading=hideTemplateLoading;
+    window.hideTemplateLoading=hideTemplateLoading
+    window.grantFailed=grantFailed;
 });
