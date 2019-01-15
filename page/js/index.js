@@ -194,14 +194,8 @@ $(function(){
         $('#initLoading').append(template);
     }
 
-    //显示浮层
-    function showTemplateLoading(){
-        $('#initLoading').show();
-    }
-
-    //隐藏浮层
-    function hideTemplateLoading(){
-        $('#initLoading').hide();
+    function clearTemplateLoading(){
+        $('#initLoading').children().remove();
     }
 
     //清除用户
