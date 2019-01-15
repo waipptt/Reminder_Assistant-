@@ -82,14 +82,12 @@ $(function(){
 
     //当前PC未登录千牛
     function hasNotLogin(){
-        clearTemplateLoading();
         clearTemplateBlank();
         templateBlank('您还没有登录千牛','请在登陆后使用旺旺自动催付','立即登录',AY_StartUpQN,'hasNotLogin')
     }
 
     //当前PC未下载千牛
     function hasNotInstallQNUI(){
-        clearTemplateLoading();
         clearTemplateBlank();
         templateBlank('检测到当前电脑未安装千牛','请在下载安装后使用旺旺自动催付','立即下载',AY_OpenURL,'hasNotInstallQNUI')
     }
@@ -103,8 +101,6 @@ $(function(){
 
     //获取目前PC已经登录的用户，存储进入userInfo数组，并显示在页面上
     function getUserInfo(newUser){
-        clearTemplateBlank();
-        clearTemplateLoading();
         let index=-1;
         $.each(userInfo,function(i,user){
             if(newUser.nick==user.nick){
@@ -132,6 +128,7 @@ $(function(){
             if(userInfo.length==0){
                 templateLoading();
             }else{
+                clearTemplateBlank();
                 clearTemplateLoading();
             }
         }
