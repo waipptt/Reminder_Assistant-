@@ -192,11 +192,13 @@ $(function(){
         template.find('#loaderImage')[0].style.backgroundImage='url('+cImageSrc+')';
         new imageLoader(cImageSrc, 'startAnimation()')
         $('#initLoading').append(template);
+        $('#initLoading').show();
     }
 
     function clearTemplateLoading(){
         stopAnimation();
         $('#initLoading').children().remove();
+        $('#initLoading').hide();
     }
 
     //清除用户
