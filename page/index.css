@@ -79,8 +79,6 @@ body{
 
 .con-template-right{
     float: right;
-    width: 120px;
-    text-align: center;
     margin-right: 15px;
 }
 
@@ -92,6 +90,8 @@ body{
 .inline-block{
     display: inline-block;
     margin-left: 15px;
+    width: 100px;
+    text-align: center;
 }
 
 .template-btn{

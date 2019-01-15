@@ -82,14 +82,14 @@ $(function(){
 
     //当前PC未登录千牛
     function hasNotLogin(){
-        hideTemplateLoading();
+        clearTemplateLoading();
         clearTemplateBlank();
         templateBlank('您还没有登录千牛','请在登陆后使用旺旺自动催付','立即登录',AY_StartUpQN,'hasNotLogin')
     }
 
     //当前PC未下载千牛
     function hasNotInstallQNUI(){
-        hideTemplateLoading();
+        clearTemplateLoading();
         clearTemplateBlank();
         templateBlank('检测到当前电脑未安装千牛','请在下载安装后使用旺旺自动催付','立即下载',AY_OpenURL,'hasNotInstallQNUI')
     }
@@ -104,6 +104,7 @@ $(function(){
     //获取目前PC已经登录的用户，存储进入userInfo数组，并显示在页面上
     function getUserInfo(newUser){
         clearTemplateBlank();
+        clearTemplateLoading();
         let index=-1;
         $.each(userInfo,function(i,user){
             if(newUser.nick==user.nick){
@@ -128,11 +129,11 @@ $(function(){
             obj['state']=newUser.state;
             userInfo.push(obj);
             getUsersState(newUser); 
-        }
-        if(userInfo.length==0){
-            showTemplateLoading();
-        }else{
-            hideTemplateLoading();
+            if(userInfo.length==0){
+                templateLoading();
+            }else{
+                clearTemplateLoading();
+            }
         }
     }
 
@@ -166,7 +167,6 @@ $(function(){
 
     //状态切换时的加载蒙层
     function showOpacityFunc(){
-        hideTemplateLoading();
         clearOpacityFunc();
         let cImageSrc='images/sprites1.gif';
         let loading=$($('#template-loading').html());
@@ -204,7 +204,6 @@ $(function(){
     //清除用户
     function clearUserList(){
         $('#container').children().remove();
-        showTemplateLoading()
     }
 
     //右侧按钮模板
@@ -372,10 +371,10 @@ $(function(){
             userInfo.splice(index,1);
         }
         if(userInfo.length==0){
-            $('#container').children().remove();
-            showTemplateLoading();
+            clearUserList();
+            templateLoading();
         }else{
-            hideTemplateLoading();
+            clearTemplateLoading();
         }
     }
 
@@ -403,7 +402,5 @@ $(function(){
     window.setGrant=setGrant;
     window.hasNotLogin=hasNotLogin;
     window.hasNotInstallQNUI=hasNotInstallQNUI;
-    window.showTemplateLoading=showTemplateLoading;
-    window.hideTemplateLoading=hideTemplateLoading
     window.grantFailed=grantFailed;
 });
