@@ -178,6 +178,7 @@ $(function(){
     }
 
     function clearOpacityFunc(){
+        stopAnimation();
         $('#showSth').children().remove();
         closeMask();
     }
@@ -205,7 +206,7 @@ $(function(){
     //清除用户
     function clearUserList(){
         $('#container').children().remove();
-        templateLoading()
+        showTemplateLoading()
     }
 
     //右侧按钮模板
