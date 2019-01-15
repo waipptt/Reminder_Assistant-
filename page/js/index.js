@@ -185,6 +185,7 @@ $(function(){
 
     //检测账户、刷新时的加载蒙层
     function templateLoading(){
+        $('#templateBlank').children().remove();
         userInfo=[];
         let cImageSrc='images/sprites.gif';
         let template=$($('#template-loading').html())
@@ -193,14 +194,9 @@ $(function(){
         $('#initLoading').append(template);
     }
 
-    //显示浮层
-    function showTemplateLoading(){
-        $('#initLoading').show();
-    }
-
-    //隐藏浮层
-    function hideTemplateLoading(){
-        $('#initLoading').hide();
+    function clearTemplateLoading(){
+        stopAnimation();
+        $('#initLoading').children().remove();
     }
 
     //清除用户
@@ -374,6 +370,7 @@ $(function(){
             userInfo.splice(index,1);
         }
         if(userInfo.length==0){
+            $('#container').children().remove();
             showTemplateLoading();
         }else{
             hideTemplateLoading();
@@ -404,4 +401,6 @@ $(function(){
     window.setGrant=setGrant;
     window.hasNotLogin=hasNotLogin;
     window.hasNotInstallQNUI=hasNotInstallQNUI;
+    window.showTemplateLoading=showTemplateLoading;
+    window.hideTemplateLoading=hideTemplateLoading;
 });
