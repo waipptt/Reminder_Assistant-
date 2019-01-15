@@ -46,15 +46,16 @@ body{
 }
 
 .con-nick{
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     color: #000;
     margin:10px 10px 5px 10px;
 }
 
 .con-state-ison,.con-state-isoff,.con-state-isNotOrder{
+    display: inline;
     border-radius: 11px;
-    font-size: 14px;
+    font-size: 10px;
     color: #FFFFFF;
     padding: 0 9px;
     margin: 5px 10px 10px 10px;
@@ -97,16 +98,16 @@ body{
 
 .icon-cancel{
     color:red;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .icon-control100,.icon-qriehuan,.icon-mianfei,.icon-guanji{
     color:#0090FA;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 #button-text{
-    font-size: 14px;
+    font-size: 10px;
     color: #000000;
 }
 
@@ -266,6 +267,10 @@ body{
 
 .grantSuccess-text{
     margin-top:20px;
+}
+
+.template-grantSuccess{
+    margin-top:90px;
 }
 
 
