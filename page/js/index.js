@@ -404,4 +404,5 @@ $(function(){
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
     window.showQRCode=showQRCode;
     window.setGrant=setGrant;
+    window.turnRunTONormal = turnRunTONormal;
 });
