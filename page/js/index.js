@@ -83,20 +83,15 @@ $(function(){
     //当前PC未登录千牛
     function hasNotLogin(){
         hideTemplateLoading();
+        clearTemplateBlank();
         templateBlank('您还没有登录千牛','请在登陆后使用旺旺自动催付','立即登录',AY_StartUpQN,'hasNotLogin')
     }
 
     //当前PC未下载千牛
     function hasNotInstallQNUI(){
         hideTemplateLoading();
+        clearTemplateBlank();
         templateBlank('检测到当前电脑未安装千牛','请在下载安装后使用旺旺自动催付','立即下载',AY_OpenURL,'hasNotInstallQNUI')
-    }
-
-    function  aaa(){
-        templateLoading();
-        $.each(usersss,function(i,user){
-            getUserInfo(user)
-        })
     }
 
     //点击按钮触发状态刷新
@@ -171,6 +166,7 @@ $(function(){
 
     //状态切换时的加载蒙层
     function showOpacityFunc(){
+        hideTemplateLoading();
         clearOpacityFunc();
         let cImageSrc='images/sprites1.gif';
         let loading=$($('#template-loading').html());
@@ -209,6 +205,7 @@ $(function(){
     //清除用户
     function clearUserList(){
         $('#container').children().remove();
+        templateLoading()
     }
 
     //右侧按钮模板
@@ -404,4 +401,6 @@ $(function(){
     window.hasAnotherAccountLogin = hasAnotherAccountLogin;
     window.showQRCode=showQRCode;
     window.setGrant=setGrant;
+    window.hasNotLogin=hasNotLogin;
+    window.hasNotInstallQNUI=hasNotInstallQNUI;
 });
