@@ -301,9 +301,10 @@ $(function(){
         let grantTime=setInterval(() => {
             $.ajax({
                 type:'GET',
-                url:'http://10.27.226.93:1999/message/getReminderSet',
+                url:'http://10.27.226.93:1999/message/getAuthInfo',
                 data:{
-                    nick:expUserNick
+                    nick:expUserNick,
+                    type:'smspay'
                 },
                 dataType:'json',
                 success:function(res){
