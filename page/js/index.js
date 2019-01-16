@@ -369,9 +369,9 @@ $(function(){
         }
         if(userInfo.length==0){
             clearUserList();
-            templateLoading();
+            hasNotLogin();
         }else{
-            clearTemplateLoading();
+            clearTemplateBlank();
         }
     }
 
@@ -400,4 +400,5 @@ $(function(){
     window.hasNotLogin=hasNotLogin;
     window.hasNotInstallQNUI=hasNotInstallQNUI;
     window.grantFailed=grantFailed;
+    window.turnRunTONormal = turnRunTONormal;
 });
