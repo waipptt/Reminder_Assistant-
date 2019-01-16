@@ -321,7 +321,7 @@ $(function(){
         QRCode.find('.QR-Code').attr('src','images/qrcode.png')
         QRCode.find('.QR-btn').click(function(){
         openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-            'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
+            'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
             '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
         })
         QRCode.find('.icon-guanbi').click(function(){
