@@ -62,7 +62,7 @@ $(function(){
                     AY_openURLinQN(choosedUser,url)
                 }else{
                     openWW(choosedUser,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-                        'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog\\\\n'+
+                        'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
                         '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
                 }
             }
@@ -211,9 +211,11 @@ $(function(){
         button.find('#button-text').html(state.buttonText);
         button.addClass('inline-block');
         button.click(function(){
+            choosedUser=users.nick;
+            state.func();
+            button.css('disabled',true);
             setTimeout(()=>{
-                choosedUser=users.nick;
-                state.func();
+                button.css('disabled',false);
             },500)
         });
         template.find('#state').html(state.stateText);
@@ -301,10 +303,9 @@ $(function(){
         let grantTime=setInterval(() => {
             $.ajax({
                 type:'GET',
-                url:'http://10.27.226.93:1999/message/getAuthInfo',
+                url:'http://trade.zdh.aiyongbao.com/message/getAuthInfo',
                 data:{
-                    nick:expUserNick,
-                    type:'smspay'
+                    nick:expUserNick
                 },
                 dataType:'json',
                 success:function(res){
@@ -321,9 +322,7 @@ $(function(){
         }, 500);
         QRCode.find('.QR-Code').attr('src','images/qrcode.png')
         QRCode.find('.QR-btn').click(function(){
-        openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-            'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
-            '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+        openWW(expUserNick,'亲，您的爱用交易授权已失效，需要主账号重新授权\\\\n授权方法：打开爱用交易-点击右上角设置-系统设置-点击重新授权')
         })
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
