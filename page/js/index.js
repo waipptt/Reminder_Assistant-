@@ -165,17 +165,17 @@ $(function(){
     //状态切换时的加载蒙层
     function showOpacityFunc(){
         clearOpacityFunc();
-        let cImageSrc='images/sprites1.gif';
+        let cImageSrc='images/whiteLoading.gif';
         let loading=$($('#template-loading').html());
         loading.find('#loaderImage')[0].style.backgroundImage='url('+cImageSrc+')';
         loading.find('#loadingText').html('<span class="textToWhite">环境配置中，请勿做任何操作</span>');
-        new imageLoader(cImageSrc, 'startAnimation()')
+        //new imageLoader(cImageSrc, 'startAnimation()')
         $('#showSth').append(loading);
         openMask();
     }
 
     function clearOpacityFunc(){
-        stopAnimation();
+        //stopAnimation();
         $('#showSth').children().remove();
         closeMask();
     }
@@ -184,16 +184,16 @@ $(function(){
     function templateLoading(){
         $('#templateBlank').children().remove();
         userInfo=[];
-        let cImageSrc='images/sprites.gif';
+        let cImageSrc='images/blueLoading.gif';
         let template=$($('#template-loading').html())
         template.find('#loaderImage')[0].style.backgroundImage='url('+cImageSrc+')';
-        new imageLoader(cImageSrc, 'startAnimation()')
+        //new imageLoader(cImageSrc, 'startAnimation()')
         $('#initLoading').append(template);
         $('#initLoading').show();
     }
 
     function clearTemplateLoading(){
-        stopAnimation();
+        //stopAnimation();
         $('#initLoading').children().remove();
         $('#initLoading').hide();
     }
@@ -401,4 +401,5 @@ $(function(){
     window.hasNotInstallQNUI=hasNotInstallQNUI;
     window.grantFailed=grantFailed;
     window.turnRunTONormal = turnRunTONormal;
+    window.clearTemplateBlank=clearTemplateBlank;
 });

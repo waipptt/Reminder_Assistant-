@@ -153,6 +153,8 @@ body{
     display: inline-block;
     margin-top: 180px;
     margin-bottom: 47px;
+    height: 64px;
+    width: 64px;
 }
 
 /*点击重新加载数据*/
