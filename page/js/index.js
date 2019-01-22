@@ -169,13 +169,11 @@ $(function(){
         let loading=$($('#template-loading').html());
         loading.find('#loaderImage')[0].style.backgroundImage='url('+cImageSrc+')';
         loading.find('#loadingText').html('<span class="textToWhite">环境配置中，请勿做任何操作</span>');
-        //new imageLoader(cImageSrc, 'startAnimation()')
         $('#showSth').append(loading);
         openMask();
     }
 
     function clearOpacityFunc(){
-        //stopAnimation();
         $('#showSth').children().remove();
         closeMask();
     }
@@ -187,13 +185,11 @@ $(function(){
         let cImageSrc='images/blueLoading.gif';
         let template=$($('#template-loading').html())
         template.find('#loaderImage')[0].style.backgroundImage='url('+cImageSrc+')';
-        //new imageLoader(cImageSrc, 'startAnimation()')
         $('#initLoading').append(template);
         $('#initLoading').show();
     }
 
     function clearTemplateLoading(){
-        //stopAnimation();
         $('#initLoading').children().remove();
         $('#initLoading').hide();
     }
@@ -277,8 +273,7 @@ $(function(){
             { curUser = expUserNick;}
 
             if (curUser.indexOf(':') == -1) {
-                let url = 'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
-                AY_openURLinQN(curUser, url)
+                AY_openTaobaoOauth(expUserNick);
             } else {
                 showQRCode(expUserNick);
             }
@@ -300,33 +295,14 @@ $(function(){
         let QRCode=$($('#template-showQRCode').html())
         QRCode.find('.QR-nick').text(expUserNick)
         grantResult=false;
-        let grantTime=setInterval(() => {
-            $.ajax({
-                type:'GET',
-                url:'http://trade.zdh.aiyongbao.com/message/getAuthInfo',
-                data:{
-                    nick:expUserNick
-                },
-                dataType:'json',
-                success:function(res){
-                    if(res){
-                        clearInterval(grantTime);
-                        clearOpacityFunc();
-                        grantSuccess(expUserNick);
-                    }
-                },
-                error:function(err){
-                    console.log('错误是',err)
-                }
-            })
-        }, 500);
+        AY_CheckUserOauth(expUserNick,true)
         QRCode.find('.QR-Code').attr('src','images/qrcode.png')
         QRCode.find('.QR-btn').click(function(){
         openWW(expUserNick,'亲，您的爱用交易授权已失效，需要主账号重新授权\\\\n授权方法：打开爱用交易-点击右上角设置-系统设置-点击重新授权')
         })
         QRCode.find('.icon-guanbi').click(function(){
             $(this).parent().parent().remove();
-            clearInterval(grantTime);
+            AY_CheckUserOauth(expUserNick,false)
             closeMask();
         })
         $('#showSth').append(QRCode);
@@ -402,4 +378,5 @@ $(function(){
     window.grantFailed=grantFailed;
     window.turnRunTONormal = turnRunTONormal;
     window.clearTemplateBlank=clearTemplateBlank;
+    window.grantSuccess=grantSuccess;
 });
