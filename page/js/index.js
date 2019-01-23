@@ -352,12 +352,11 @@ $(function(){
     }
 
     //将所有running状态下的用户转变成normal状态
-    function turnRunTONormal(){
-        $.each(userInfo,function(user){
-            if(user.state=='running'){
-                user.state='normal'
-            }
+    function turnStateTONormal(){
+        $.each(userInfo,function(i,user){
+            user.state='normal'
         })
+        // console.log(userInfo)
     }
 
     function setGrant(nick){
@@ -376,7 +375,7 @@ $(function(){
     window.hasNotLogin=hasNotLogin;
     window.hasNotInstallQNUI=hasNotInstallQNUI;
     window.grantFailed=grantFailed;
-    window.turnRunTONormal = turnRunTONormal;
+    window.turnStateTONormal = turnStateTONormal;
     window.clearTemplateBlank=clearTemplateBlank;
     window.grantSuccess=grantSuccess;
 });
