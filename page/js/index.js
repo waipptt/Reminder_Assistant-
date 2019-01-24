@@ -353,9 +353,12 @@ $(function(){
 
     //将所有running状态下的用户转变成normal状态
     function turnStateTONormal(){
+        clearUserList();
         $.each(userInfo,function(i,user){
             user.state='normal'
+            getUserInfo(user)
         })
+
         // console.log(userInfo)
     }
 
