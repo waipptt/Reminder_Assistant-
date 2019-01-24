@@ -51,22 +51,22 @@ $(function(){
                 AY_SetUserState(choosedUser,true);
             }
         },
-        '5':{
-            buttonClassName:'iconfont icon-mianfei',
-            buttonText:'免费订购爱用交易',
-            stateText:'未订购爱用交易',
-            templateClass:'con-state-isNotOrder',
-            func:function(){//添加callback
-                if(choosedUser.indexOf(':')==-1){
-                    let url='https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
-                    AY_openURLinQN(choosedUser,url)
-                }else{
-                    openWW(choosedUser,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
-                        'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
-                        '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
-                }
-            }
-        }
+        // '5':{
+        //     buttonClassName:'iconfont icon-mianfei',
+        //     buttonText:'免费订购爱用交易',
+        //     stateText:'未订购爱用交易',
+        //     templateClass:'con-state-isNotOrder',
+        //     func:function(){//添加callback
+        //         if(choosedUser.indexOf(':')==-1){
+        //             let url='https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
+        //             AY_openURLinQN(choosedUser,url)
+        //         }else{
+        //             openWW(choosedUser,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+        //                 'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
+        //                 '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+        //         }
+        //     }
+        // }
     }
 
     //首次加载时关闭蒙层
@@ -366,6 +366,27 @@ $(function(){
         
     }
 
+    //未订购爱用交易
+    function isNotOrder(expUserNick) {
+        layer.confirm('未订购爱用交易，请点击订购', { title: expUserNick, shade: 0.3 }, function(index) {
+            //do something
+            //choosedUser = 'yang会清:1111'
+            if (expUserNick.indexOf(':') == -1) {
+                let url='https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2';
+                AY_openURLinQN(expUserNick,url)
+            } else {
+                openWW(expUserNick,'亲，使用催单助手需要主账号先免费订购爱用交易哦，\\\\n'+
+                'https://fuwu.taobao.com/ser/assembleParam.htm?spm=a1z13.2196529.0.0.1b1f519fmbgMhQ&tracelog'+
+                '=search&activityCode=&promIds=&subParams=itemCode:FW_GOODS-1827490-1,cycleNum:12,cycleUnit:2')
+            }
+            layer.close(index);
+        },function(index){
+            closeMask();
+            layer.close(index)
+        });
+    }
+
+
     window.getUserInfo=getUserInfo;
     window.templateLoading=templateLoading;
     window.clearUserList=clearUserList;
@@ -381,4 +402,5 @@ $(function(){
     window.turnStateTONormal = turnStateTONormal;
     window.clearTemplateBlank=clearTemplateBlank;
     window.grantSuccess=grantSuccess;
+    window.isNotOrder=isNotOrder;
 });
